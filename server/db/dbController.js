@@ -1,4 +1,1 @@
-console.log('dbController');
-console.log('dbController');
-console.log('dbController');
-console.log('dbController');
+//todo db querying
