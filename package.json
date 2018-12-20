@@ -1,0 +1,33 @@
+{
+  "name": "bookingcalendar",
+  "description": "Booking and Calendar Module for Bestbnb",
+  "author": "Kevin Li",
+  "main": "server.js",
+  "engines": {
+    "node": ">=6.13.0"
+  },
+  "scripts": {
+    "react-dev": "webpack -d --watch",
+    "start": "nodemon --inspect --watch server.js",
+    "babel": "babel client --out-dir public --presets=env,react --source-maps inline --watch"
+  },
+  "dependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "sequelize": "^4.42.0",
+    "webpack": "^4.28.0",
+    "webpack-cli": "^3.1.2"
+  },
+  "devDependencies": {
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+  }
+}
