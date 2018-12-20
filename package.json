@@ -2,13 +2,13 @@
   "name": "bookingcalendar",
   "description": "Booking and Calendar Module for Bestbnb",
   "author": "Kevin Li",
-  "main": "server.js",
+  "main": "index.js",
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
     "react-dev": "webpack -d --watch",
-    "start": "nodemon --inspect --watch server.js",
+    "start": "nodemon --inspect --watch server/index.js",
     "babel": "babel client --out-dir public --presets=env,react --source-maps inline --watch"
   },
   "dependencies": {
