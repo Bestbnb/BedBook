@@ -16,7 +16,7 @@ connection.authenticate()
   .then(() => console.log('Connected to TEST_cal_book database'))
   .catch(err => console.error(err));
 
-const BnbData = connection.define('bnbData', {
+let BnbData = connection.define('bnbData', {
   minStay: Sequelize.INTEGER,
   lastUpdate: Sequelize.DATE,
   costPerNight: Sequelize.INTEGER,
@@ -26,7 +26,7 @@ const BnbData = connection.define('bnbData', {
   bonusInfo: Sequelize.STRING
 });
 
-const Reservations = connection.define('reservation', {
+let Reservations = connection.define('reservation', {
   id: {
     type: Sequelize.INTEGER,
     autoIncrement: true,
@@ -35,6 +35,7 @@ const Reservations = connection.define('reservation', {
   dateBooked: Sequelize.DATE
 });
 
+Reservations.belongsTo(BnbData);
 // Reservations.belongsTo(BnbData);
 // BnbData.belongsTo(Reservations);
 
@@ -93,6 +94,9 @@ for (let i = 0; i < 100; i++) {
   BnbData.create(fakeBnbData);
 }
 
+
+// determine randomizing groups of clusters of dates (e.g. booking a week)
+
 for (let i = 0; i < 100; i++) {
   let fakeReservation = {
     dateBooked: faker.date.future(0, '2020-01-01')
@@ -130,7 +134,6 @@ describe('database functionality', () => {
   });
 
   test('initial tables exist', async () => {
-    setTimeout(() => { console.log("Hello"); }, 100000000);
   });
 });
 
