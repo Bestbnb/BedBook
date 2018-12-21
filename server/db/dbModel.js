@@ -6,20 +6,15 @@ const connection = new Sequelize('Bestbnb_cal_book', 'root', '', {
 );
 
 connection.authenticate()
-  .then(() => console.log('Connected to moviedb database'))
+  .then(() => console.log('Connected to Bestbnb_cal_book database'))
   .catch(err => console.error(err));
 
 // ---------------------------------------------------------------
 //                           M o d e l
 // ---------------------------------------------------------------
-
-const Reservations = connection.define('reservation', {
-  dateBooked: Sequelize.DATE
-});
-
 const BnbData = connection.define('bnbData', {
   minStay: Sequelize.INTEGER,
-  lastUpdate: Sequelize.INTEGER,
+  lastUpdate: Sequelize.DATE,
   costPerNight: Sequelize.INTEGER,
   ratings: Sequelize.INTEGER,
   cleaningFee: Sequelize.INTEGER,
@@ -27,10 +22,26 @@ const BnbData = connection.define('bnbData', {
   bonusInfo: Sequelize.STRING
 });
 
-// BnbData.belongsTo(Reservations);
+const Reservations = connection.define('reservation', {
+  id: {
+    type: Sequelize.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  dateCheckIn: Sequelize.DATE,
+  dateCheckOut: Sequelize.DATE
+});
 
-Reservations.sync();
-BnbData.sync();
+
+Reservations.belongsTo(BnbData);
+// BnbData.belongsTo(Reservations);
+Reservations.sync(
+  // {force: true}
+);
+
+BnbData.sync(
+  // {force: true}
+);
 
 
 module.exports = {
