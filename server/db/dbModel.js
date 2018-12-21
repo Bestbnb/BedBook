@@ -28,7 +28,8 @@ const Reservations = connection.define('reservation', {
     autoIncrement: true,
     primaryKey: true
   },
-  dateBooked: Sequelize.DATE
+  dateCheckIn: Sequelize.DATE,
+  dateCheckOut: Sequelize.DATE
 });
 
 

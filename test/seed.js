@@ -1,7 +1,5 @@
 const faker = require('faker');
-const puppeteer = require('puppeteer');
 const Sequelize = require('sequelize');
-const pageURL = 'http://127.0.0.1:1337/';
 
 // ---------------------------------------------------------------
 // Testing DB Setup
@@ -75,37 +73,3 @@ for (let i = 0; i < 100; i++) {
   };
   Reservations.create(fakeReservation);
 }
-
-// ---------------------------------------------------------------
-// Puppeteer Setup
-// ---------------------------------------------------------------
-let page;
-let browser;
-const width = 1920;
-const height = 1080;
-
-beforeAll(async () => {
-  browser = await puppeteer.launch({
-    headless: false,
-    slowMo: 80,
-    args: [`--window-size=${width},${height}`]
-  });
-  page = await browser.newPage();
-  await page.setViewport({ width, height });
-});
-afterAll(() => {
-  browser.close();
-});
-
-// ---------------------------------------------------------------
-// Tests
-// ---------------------------------------------------------------
-describe('database functionality', () => {
-  beforeEach(async () => {
-   page.goto(pageURL, {waitUntil: 'networkidle2'});
-  });
-
-  test('initial tables exist', async () => {
-  });
-});
-
