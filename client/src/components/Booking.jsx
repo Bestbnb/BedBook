@@ -4,7 +4,7 @@ import Dates from './Dates.jsx';
 import Guests from './Guests.jsx';
 
 const Booking = (props) => (
-  <div className='booking'>
+  <div id='bookingModule' className='booking'>
     <div className='description'>
     [temp] $127 per night
     </div>
