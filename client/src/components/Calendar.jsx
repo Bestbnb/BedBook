@@ -25,7 +25,7 @@ class Calendar extends React.Component {
           </div>
         </div>
         <div className="col col-center">
-          <span>
+          <span id='month-header'>
             {dateFns.format(this.state.currentMonth, dateFormat)}
           </span>
         </div>

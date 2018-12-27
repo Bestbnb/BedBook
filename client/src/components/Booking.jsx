@@ -11,7 +11,6 @@ const Booking = (props) => (
     <div className='reviews'>[temp]*****</div>
     <div className='line'>----------</div>
     <form>
-      <Dates /> 
       <Guests />
     </form>
 

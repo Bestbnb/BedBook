@@ -73,3 +73,4 @@ for (let i = 0; i < 100; i++) {
   };
   Reservations.create(fakeReservation);
 }
+// determine randomizing groups of clusters of dates (e.g. booking a week)
