@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Calendar from './components/Calendar.jsx';
+import Booking from './components/Booking.jsx';
 
 
 class App extends React.Component {
@@ -8,38 +9,32 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      bookedDates: null
+      bookedDates: null,
+      price: null,
+      ratings: null,
+      cleaningFee: null,
+      serviceFee: null,
+      total: null,
+      bonusInfo: null,
+      adults: 0,
+      children: 0,
+      infants: 0
     };
 
   }
 
 
-numOfDays(mm, yyyy) {
-  let daysOfMonth;
-  if (mm === 4 || mm === 6 || mm === 9 || mm === 11) {
-    daysOfMonth = 30;
-  } else if (mm === 2) {
-    if (yyyy/4 - parseInt(yyyy/4) !== 0) {
-      daysOfMonth = 28;
-    } else if (yyyy/100 - parseInt(yyyy/100) !== 0) {
-      daysofmonth = 29
-    } else if (yyyy/400 - parseInt(yyyy/400) !== 0) {
-      daysOfMonth = 28;
-    } else {
-      daysOfMonth = 29;
-    }
-  } else {
-  daysOfMonth = 31;
-  }
-  
-  return daysOfMonth;
-}
-
-
   render() {
     return (
       <div>
-        <Calendar />
+        <div>
+          <Calendar state={this.state}/>
+        </div>
+        
+        <div>
+          <Booking state={this.state}/>
+        </div>
+
       </div>
     )
   };

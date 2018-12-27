@@ -1,65 +1,131 @@
 import React from 'react';
+import dateFns from 'date-fns';
 
-const Calendar = () => (
-  <body className='Calendar Module'>
-    <div className='Availability'>Availability</div>
-    <div className='minStay'>'(place holder text) 1 min night stay - updated 1 month ago</div>
-    <div className='Clear dates'>Clear dates</div>
+class Calendar extends React.Component {
+  constructor(props) {
+    super(props);
 
-    <div class='month'> 
-      <ul>
-        <li class='prev'>PREV</li>
-        <li class='next'>NEXT</li>
-        <li>December<br></br><span>2018</span></li>
-      </ul>
-    </div>
+    this.state = {
+      today: new Date(),
+      currentMonth: new Date(),
+      selectedDate: new Date()
+    };
 
-    <ul class='weekdays'>
-      <li>Mo</li>
-      <li>Tu</li>
-      <li>We</li>
-      <li>Th</li>
-      <li>Fr</li>
-      <li>Sa</li>
-      <li>Su</li>
-    </ul>
+    this.nextMonth = this.nextMonth.bind(this);
+    this.prevMonth = this.nextMonth.bind(this);
+  }
 
-    <ul class='days'> 
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
-      <li>5</li>
-      <li>6</li>
-      <li>7</li>
-      <li>8</li>
-      <li>9</li>
-      <li><span className='active'>10</span></li>
-      <li><span className='active'>11</span></li>
-      <li><span className='active'>12</span></li>
-      <li><span className='active'>13</span></li>
-      <li>14</li>
-      <li>15</li>
-      <li>16</li>
-      <li>17</li>
-      <li>18</li>
-      <li>19</li>
-      <li>20</li>
-      <li>21</li>
-      <li>22</li>
-      <li>23</li>
-      <li>24</li>
-      <li>25</li>
-      <li>26</li>
-      <li>27</li>
-      <li>28</li>
-      <li>29</li>
-      <li>30</li>
-    </ul> 
+  renderHeader() {
+    const dateFormat = "MMMM YYYY";
+    return (
+      <div className="header row flex-middle">
+        <div className="col col-start" onClick={this.prevMonth}>
+          <div className="prevmonth">
+            <svg focusable="false" viewBox="0 0 1000 1000"><path d="M336.2 274.5l-210.1 210h805.4c13 0 23 10 23 23s-10 23-23 23H126.1l210.1 210.1c11 11 11 21 0 32-5 5-10 7-16 7s-11-2-16-7l-249.1-249c-11-11-11-21 0-32l249.1-249.1c21-21.1 53 10.9 32 32z"></path></svg>
+          </div>
+        </div>
+        <div className="col col-center">
+          <span>
+            {dateFns.format(this.state.currentMonth, dateFormat)}
+          </span>
+        </div>
+        <div className="col col-end" onClick={this.nextMonth}>
+          <div className="nextmonth">
+          <svg focusable="false" viewBox="0 0 1000 1000"><path d="M694.4 242.4l249.1 249.1c11 11 11 21 0 32L694.4 772.7c-5 5-10 7-16 7s-11-2-16-7c-11-11-11-21 0-32l210.1-210.1H67.1c-13 0-23-10-23-23s10-23 23-23h805.4L662.4 274.5c-21-21.1 11-53.1 32-32.1z"></path></svg>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
-  </body>
-);
+  renderDays() {
+    const dateFormat = "dd";
+    const days = [];
+    let startDate = dateFns.startOfWeek(this.state.currentMonth);
+    for (let i = 0; i < 7; i++) {
+      days.push(
+        <div className="col col-center" key={i}>
+          {dateFns.format(dateFns.addDays(startDate, i), dateFormat)}
+        </div>
+      );
+    }
+    return <div className="days row">{days}</div>;
+  }
 
+  renderCells() {
+    const { currentMonth, selectedDate } = this.state;
+    const monthStart = dateFns.startOfMonth(currentMonth);
+    const monthEnd = dateFns.endOfMonth(monthStart);
+    const startDate = dateFns.startOfWeek(monthStart);
+    const endDate = dateFns.endOfWeek(monthEnd);
 
+    const dateFormat = "D";
+    const rows = [];
+
+    let days = [];
+    let day = startDate;
+    let formattedDate = "";
+    
+    while (day <= endDate) {
+      for (let i = 0; i < 7; i++) {
+        if (dateFns.isSameMonth(day, monthStart)) {
+          formattedDate = dateFns.format(day, dateFormat);
+          const cloneDay = day;
+          days.push(
+            <div
+              className={`col cell ${dateFns.isSameDay(day, selectedDate) ? "selected" : ""}`}
+              key={day}
+              onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
+            >
+              <span className="number">{formattedDate}</span>
+            </div>
+          );
+        } else {
+          days.push(<span className="col cell"></span>)
+        }
+        day = dateFns.addDays(day, 1);
+      }
+      rows.push(
+        <div className="row" key={day}>
+          {days}
+        </div>
+      );
+      days = [];
+    }
+    return <div className="body">{rows}</div>;
+  }
+
+  onDateClick(day) {
+    this.setState({
+      selectedDate: day
+    });
+  };
+
+  nextMonth() {
+    this.setState({
+      currentMonth: dateFns.addMonths(this.state.currentMonth, 1)
+    });
+  };
+
+  prevMonth() {
+    this.setState({
+      currentMonth: dateFns.subMonths(this.state.currentMonth, 1)
+    });
+  };
+
+  render() {
+    return (
+      <div className="calendar">
+        {this.renderHeader()}
+        {this.renderDays()}
+        {this.renderCells()}
+
+        <br></br>
+        <br></br>
+        <br></br>
+      </div>
+    );
+  }
+}
 
 export default Calendar;
