@@ -1,3 +1,9 @@
+/* * {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+} */
+
 .booking {
   padding-left: 24px !important;
   padding-right: 24px !important;
@@ -106,7 +112,15 @@
   border-bottom: 0px !important;
 }
 
-body {    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;;}
+body {    
+  font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.43;
+  color: #484848;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 
 .prevmonth {
@@ -115,9 +129,9 @@ body {    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetic
   background-color: rgb(255, 255, 255) !important;
   color: rgb(117, 117, 117) !important;
   position: absolute !important;
-  top: 18px !important;
+  top: 100px !important;
   line-height: 0.78 !important;
-  left: 22px !important;
+  left: 10px !important;
   margin: 0px !important;
   border-width: 1px !important;
   border-style: solid !important;
@@ -125,11 +139,11 @@ body {    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetic
   border-image: initial !important;
   border-radius: 3px !important;
   padding: 6px 9px !important;
+  z-index: 3;
 
   height: 19px !important;
   width: 19px !important;
   fill: rgb(130, 136, 138) !important;
-  display: block !important;
 }
 
 .nextmonth {
@@ -138,9 +152,9 @@ body {    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetic
   background-color: rgb(255, 255, 255) !important;
   color: rgb(117, 117, 117) !important;
   position: absolute !important;
-  top: 18px !important;
+  top: 100px !important;
   line-height: 0.78 !important;
-  right: 22px !important;
+  right: 0px !important;
   margin: 0px !important;
   border-width: 1px !important;
   border-style: solid !important;
@@ -148,40 +162,33 @@ body {    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetic
   border-image: initial !important;
   border-radius: 3px !important;
   padding: 6px 9px !important;
+  z-index: 3;
 
   height: 19px !important;
   width: 19px !important;
   fill: rgb(130, 136, 138) !important;
-  display: block !important;
 }
+
 
 .col {
-  flex-grow: 1;
-  flex-basis: 0;
-  max-width: 100%;
+  width: 40px !important;
 }
 
-.col-start {
-  justify-content: flex-start;
-  text-align: left;
+.day-label {
+  color: rgb(117, 117, 117) !important;
+  width: 40px !important;
+  font-size: 14px !important;
+  text-align: center !important;
+  height: 20px !important;
+  /* padding-top: 22px !important;
+  padding-bottom: 37px !important;
+  caption-side: initial !important; */
 }
 
-.col-center {
-  justify-content: center;
-  text-align: center;
-}
-
-.col-end {
-  justify-content: flex-end;
-  text-align: right;
-}
 
 .row {
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   width: 100%;
 }
 
@@ -189,31 +196,199 @@ body {    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetic
   align-items: center;
 }
 
-header {
+.month-label {
   display: block;
   width: 100%;
   padding: 1.75em 0;
   border-bottom: 1px solid var(--border-color);
   background: var(--neutral-color);
+  font-size: 18px !important;
 }
 
 .cell {
-  height: 38px !important;
   position: relative !important;
-  width: 38px !important;
-  margin: 0px !important;
-  font-size: 14px !important;
-  text-align: center !important;
-  cursor: default !important;
-  padding-bottom: 13px !important;
-  padding-top: 13px !important;
+  max-width: 38px;
+  max-height: 38px;
 }
 
 .selected {
-  background: rgb(0, 132, 137);
-  color: rgb(0, 0, 0);
-  border: 2px solid rgb(255, 255, 255);
-  border-radius: 7px;
-  box-sizing: border-box !important;
+  background: rgb(0, 132, 137) !important;
 }
 
+/* CALENDAR */
+
+.calendar {
+  position: relative;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: auto !important;
+  max-width: 648px;
+  max-height: 443px;
+  box-sizing: border-box;
+}
+
+.calendar-padding {
+  padding-left: 8px !important;
+  padding-right: 8px !important;
+  min-height: 1px !important;
+  position: relative !important;
+}
+
+h2 {
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+.availability {
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  margin: 0px !important;
+  word-wrap: break-word !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  line-height: 1.375em !important;
+  color: #484848 !important;
+  text-rendering: optimizelegibility;
+}
+
+.available {
+  width: 40px;
+  height: 39px;
+  background: rgb(237, 246, 246);
+  color: rgb(0, 132, 137);
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 7px;
+  padding: 0px;
+}
+
+.available:hover {
+  background: rgb(204, 238, 235);
+}
+
+.unavailable {
+  width: 40px;
+  height: 39px;
+  background: repeating-linear-gradient(-45deg, rgb(255, 255, 255), rgb(255, 255, 255) 3px, rgb(235, 235, 235) 3px, rgb(235, 235, 235) 4px);
+  color: rgb(0, 0, 0);
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 7px;
+  padding: 0px;
+}
+
+.calendar-module {
+  width: 281px;
+  height: 326px;
+  padding: 0px 13px;
+  display: inline-block !important;
+  vertical-align: top !important;
+  min-height: 100% !important;
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 3px !important;
+  transition: height 0.2s ease-in-out 0s !important;
+}
+
+.cal-headers {
+  color: rgb(72, 72, 72) !important;
+  font-size: 18px !important;
+  text-align: center !important;
+  padding-top: 22px !important;
+  padding-bottom: 37px !important;
+  caption-side: initial !important;
+}
+
+.container {
+  display: -webkit-flex;
+  display: flex;
+  width: 632px;
+  height: 342px;
+}
+
+.number {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  font-weight: 700 !important;
+  height: 12px !important;
+  line-height: 12px !important;
+  text-align: center !important;
+  width: 38px !important;
+  color: rgb(0, 132, 137) !important;
+}
+
+.selected-num {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  font-weight: 700 !important;
+  height: 12px !important;
+  line-height: 12px !important;
+  text-align: center !important;
+  width: 38px !important;
+  color: rgb(255, 255, 255) !important;
+}
+
+.gray-num {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  font-weight: 700 !important;
+  height: 12px !important;
+  line-height: 12px !important;
+  text-align: center !important;
+  width: 38px !important;
+  color: rgb(216, 216, 216) !important;
+}
+
+.number-template {
+  padding-bottom: 12px !important;
+  padding-top: 12px !important;
+  max-height: 12px;
+  font-size: 14px !important;
+}
+
+span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+td {
+  display: table-cell;
+  vertical-align: inherit;
+}
+
+small {
+  font-size: 0.85em;
+}
+
+table {
+  display: table;
+  top: 150px;
+  max-width: 100%;
+  border-collapse: collapse !important;
+  border-spacing: 0px !important;
+}
+
+strong {
+  font-weight: bold;
+}
+
+p {
+  text-align: center;
+}
+
+.description {
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  margin: 0px !important;
+  word-wrap: break-word !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 1.375em !important;
+  color: #484848 !important;
+}

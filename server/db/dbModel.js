@@ -1,12 +1,12 @@
 const Sequelize = require('sequelize');
-const connection = new Sequelize('Bestbnb_cal_book', 'root', '', {
+const connection = new Sequelize('TEST_cal_book', 'root', '', {
   host: 'localhost',
   dialect: 'mysql'
   }
 );
 
 connection.authenticate()
-  .then(() => console.log('Connected to Bestbnb_cal_book database'))
+  .then(() => console.log('Connected to TEST_cal_book database'))
   .catch(err => console.error(err));
 
 // ---------------------------------------------------------------
@@ -33,7 +33,7 @@ const Reservations = connection.define('reservation', {
 });
 
 
-Reservations.belongsTo(BnbData);
+// Reservations.belongsTo(BnbData);
 // BnbData.belongsTo(Reservations);
 Reservations.sync(
   // {force: true}
