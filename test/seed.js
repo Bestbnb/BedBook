@@ -1,5 +1,6 @@
 const faker = require('faker');
 const Sequelize = require('sequelize');
+const dateFns = require('date-fns');
 
 // ---------------------------------------------------------------
 // Testing DB Setup
@@ -25,15 +26,11 @@ let BnbData = connection.define('bnbData', {
 });
 
 let Reservations = connection.define('reservation', {
-  id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    primaryKey: true
-  },
-  dateBooked: Sequelize.DATE
+  dateCheckIn: Sequelize.DATE,
+  dateCheckOut: Sequelize.DATE
 });
 
-Reservations.belongsTo(BnbData);
+// Reservations.belongsTo(BnbData);
 
 Reservations.sync();
 BnbData.sync();
@@ -65,11 +62,16 @@ for (let i = 0; i < 100; i++) {
 }
 
 
-// determine randomizing groups of clusters of dates (e.g. booking a week)
 
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 150; i++) {
+  let increment = Math.floor(Math.random() * 4);
+  const dateFormat = "ddd MMM DD YYYY [00:00:00 GMT-0800 (Pacific Standard Time)]";
+  let checkIn = dateFns.format(faker.date.future(1), dateFormat);
+  let checkOut = dateFns.format(dateFns.addDays(checkIn, increment), dateFormat);
+  
   let fakeReservation = {
-    dateBooked: faker.date.future(0, '2020-01-01')
+    dateCheckIn: checkIn,
+    dateCheckOut: checkOut
   };
   Reservations.create(fakeReservation);
 }

@@ -1,45 +1,80 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Calendar from './components/Calendar.jsx';
-
+import Booking from './components/Booking.jsx';
+import dateFns from 'date-fns';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      bookedDates: null
+      price: null,
+      ratings: null,
+      cleaningFee: null,
+      serviceFee: null,
+      total: null,
+      bonusInfo: null,
+      adults: 0,
+      children: 0,
+      infants: 0,
+      checkIn: null,
+      checkOut: null,
+      selectedArr: []
     };
 
   }
 
-
-numOfDays(mm, yyyy) {
-  let daysOfMonth;
-  if (mm === 4 || mm === 6 || mm === 9 || mm === 11) {
-    daysOfMonth = 30;
-  } else if (mm === 2) {
-    if (yyyy/4 - parseInt(yyyy/4) !== 0) {
-      daysOfMonth = 28;
-    } else if (yyyy/100 - parseInt(yyyy/100) !== 0) {
-      daysofmonth = 29
-    } else if (yyyy/400 - parseInt(yyyy/400) !== 0) {
-      daysOfMonth = 28;
+  selectDateClick(day) {
+    if (this.state.checkIn === null) {
+      let dayStr = day.toString();
+      this.setState({
+        checkIn: day,
+        selectedArr: [dayStr]
+      });
+      console.log('set checkIn via select');
+    } else if (this.state.checkOut === null) {
+      this.setState({
+        checkOut: day
+      }, () => {
+        this.calculateRangeSelected()
+      });
+      console.log('set checkOUT via select');
     } else {
-      daysOfMonth = 29;
+      let dayStr = day.toString();
+      this.setState({
+        checkIn: day,
+        checkOut: null,
+        selectedArr: [dayStr]
+      })
+      console.log('reset check and selected checkIn');
     }
-  } else {
-  daysOfMonth = 31;
   }
-  
-  return daysOfMonth;
-}
+
+  calculateRangeSelected() {
+    let difference = dateFns.differenceInCalendarDays(this.state.checkOut, this.state.checkIn);
+    let arr;
+    for (let i = 0; i <= difference; i++) {
+      let selectedDate = dateFns.addDays(this.state.checkIn, i).toString();
+      arr = this.state.selectedArr;
+      arr.push(selectedDate);
+    }
+    this.setState({
+      selectedArr: arr
+    });
+  }
 
 
   render() {
     return (
       <div>
-        <Calendar />
+        <Calendar state={this.state} selectDateClick={this.selectDateClick.bind(this)} calculateRangeSelected={this.calculateRangeSelected.bind(this)}/>
+        
+        <br></br>
+        <br></br>
+
+        <Booking state={this.state}/>
+
       </div>
     )
   };

@@ -10,13 +10,7 @@ router.post('/bnb', controller.createBnb);
 router.get('/booking', controller.findAllBooking);
 router.get('/bnb', controller.findAllBnb);
 
-// READ ONE
-
-// UPDATE
-
 // DELETE
-
-// SEARCH
 
 
 module.exports = router;

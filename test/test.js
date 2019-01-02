@@ -4,87 +4,14 @@ const Sequelize = require('sequelize');
 const pageURL = 'http://127.0.0.1:1337/';
 
 // ---------------------------------------------------------------
-// Testing DB Setup
-// ---------------------------------------------------------------
-const connection = new Sequelize('TEST_cal_book', 'root', '', {
-  host: 'localhost',
-  dialect: 'mysql'
-  }
-);
-
-connection.authenticate()
-  .then(() => console.log('Connected to TEST_cal_book database'))
-  .catch(err => console.error(err));
-
-let BnbData = connection.define('bnbData', {
-  minStay: Sequelize.INTEGER,
-  lastUpdate: Sequelize.DATE,
-  costPerNight: Sequelize.INTEGER,
-  ratings: Sequelize.INTEGER,
-  cleaningFee: Sequelize.INTEGER,
-  serviceFee: Sequelize.INTEGER,
-  bonusInfo: Sequelize.STRING
-});
-
-let Reservations = connection.define('reservation', {
-  id: {
-    type: Sequelize.INTEGER,
-    autoIncrement: true,
-    primaryKey: true
-  },
-  dateBooked: Sequelize.DATE
-});
-
-Reservations.belongsTo(BnbData);
-
-Reservations.sync();
-BnbData.sync();
-
-Reservations.destroy({
-  where: {},
-  truncate: true
-})
-
-BnbData.destroy({
-  where: {},
-  truncate: true
-})
-// ---------------------------------------------------------------
-// Faker Setup
-// ---------------------------------------------------------------
-
-for (let i = 0; i < 100; i++) {
-  let fakeBnbData = {
-    minStay: faker.random.number(10),
-    lastUpdate: faker.date.past(1),
-    costPerNight: faker.commerce.price(10,1500,0),
-    ratings: faker.random.number(5),
-    cleaningFee: faker.commerce.price(60,150,0),
-    serviceFee: faker.commerce.price(10,100,0),
-    bonusInfo: faker.company.bs()
-  };
-  BnbData.create(fakeBnbData);
-}
-
-
-// determine randomizing groups of clusters of dates (e.g. booking a week)
-
-for (let i = 0; i < 100; i++) {
-  let fakeReservation = {
-    dateBooked: faker.date.future(0, '2020-01-01')
-  };
-  Reservations.create(fakeReservation);
-}
-
-// ---------------------------------------------------------------
 // Puppeteer Setup
 // ---------------------------------------------------------------
 let page;
 let browser;
-const width = 1920;
-const height = 1080;
+const width = 1280;
+const height = 720;
 
-beforeAll(async () => {
+beforeAll(async function() {
   browser = await puppeteer.launch({
     headless: false,
     slowMo: 80,
@@ -93,19 +20,51 @@ beforeAll(async () => {
   page = await browser.newPage();
   await page.setViewport({ width, height });
 });
-afterAll(() => {
+afterAll(function() {
   browser.close();
 });
 
 // ---------------------------------------------------------------
 // Tests
 // ---------------------------------------------------------------
-describe('database functionality', () => {
-  beforeEach(async () => {
-   page.goto(pageURL, {waitUntil: 'networkidle2'});
+describe('Calendar Module successfully rendered to page', function() {
+
+  beforeEach(async function() {
+   await page.goto(pageURL, {waitUntil: 'networkidle2'});
   });
 
-  test('initial tables exist', async () => {
+  test('calendar headers exist', async function() {
+    const d = new Date();
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];  
+    const thisMonth = `${months[d.getMonth()]} ${d.getFullYear()}`
+    let div = '#month-header';
+    const header = await page.$eval(div, function(e) {return e.textContent});
+    expect(header).toEqual(`${thisMonth}`);
+  });
+
+  test('calendar has rendered 6 rows for dates', async function() {
+    let div = '.body';
+    const calendarRows = await page.$eval(div, function(e) {return e.children.length});
+    expect(calendarRows).toEqual(6);
+  });
+});
+
+describe('Booking Module successfully rendered to page', function() {
+
+  beforeEach(async function() {
+   await page.goto(pageURL, {waitUntil: 'networkidle2'});
+  });
+
+  test('Booking layout exists (description check)', async function() {
+    let div = '.description';
+    const description = await page.$eval(div, function(e) {return e.textContent});
+    expect(typeof description).toEqual('string');
+  });
+
+  test('Booking layout exists (reviews check)', async function() {
+    let div = '.reviews';
+    const reviews = await page.$eval(div, function(e) {return e.textContent});
+    expect(typeof reviews).toEqual('string');
   });
 });
 
