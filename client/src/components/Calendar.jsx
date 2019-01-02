@@ -329,6 +329,36 @@ class Calendar extends React.Component {
             {this.renderCells2()}
           </div>
         </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
       </div>
     );
   }

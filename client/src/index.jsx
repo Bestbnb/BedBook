@@ -67,15 +67,20 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Calendar state={this.state} selectDateClick={this.selectDateClick.bind(this)} calculateRangeSelected={this.calculateRangeSelected.bind(this)}/>
-        
-        <br></br>
-        <br></br>
+      <main style={{position:'relative', display: 'block'}}>
+        <div className='room'>
+          <div style={{marginTop:'0px', marginBottom:'0px', marginLeft:'0px', marginRight:'0px'}}>
+            <div style={{marginTop:'-51px', paddingTop:'51px'}}></div>
+              <Calendar state={this.state} selectDateClick={this.selectDateClick.bind(this)} calculateRangeSelected={this.calculateRangeSelected.bind(this)}/>
+            
+              <br></br>
+              <br></br>
 
-        <Booking state={this.state}/>
+              <Booking state={this.state}/>
 
-      </div>
+          </div>
+        </div>
+      </main>
     )
   };
 };
@@ -84,3 +89,5 @@ ReactDOM.render(
   <App />,
   document.getElementById('app')
 );
+
+window.Calbook = App;
