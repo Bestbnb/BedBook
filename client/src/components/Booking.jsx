@@ -11,9 +11,23 @@ const Booking = (props) => (
     <div className='reviews'>[temp]*****</div>
     <div className='line'>----------</div>
     <form>
-      <Guests />
+      <div>
+        <Dates state={props.state}/>
+        <Guests state={props.state}/>
+      </div>
     </form>
+    <div style={{'marginBottom': '8px'}}>
+      <div>
+        <span>
+          [temp] $75 per night
+        </span>
+      </div>
 
+      <div style={{'marginBottom': '8px', 'margonTop': '8px'}}>
+        <div className="divider"></div>
+      </div>
+
+    </div>
   </div>  
 );
 

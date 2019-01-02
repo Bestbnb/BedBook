@@ -64,7 +64,7 @@ for (let i = 0; i < 100; i++) {
 
 
 for (let i = 0; i < 150; i++) {
-  let increment = Math.floor(Math.random() * 7);
+  let increment = Math.floor(Math.random() * 4);
   const dateFormat = "ddd MMM DD YYYY [00:00:00 GMT-0800 (Pacific Standard Time)]";
   let checkIn = dateFns.format(faker.date.future(1), dateFormat);
   let checkOut = dateFns.format(dateFns.addDays(checkIn, increment), dateFormat);
