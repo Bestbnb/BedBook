@@ -16,7 +16,19 @@
   padding-left: 24px !important;
 }
 
-
+input {
+  text-rendering: auto;
+  color: initial;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  margin: 0em;
+  font: 400 11px system-ui;
+}
 
 /* -------------------------------------------------- 
                   Booking Module
@@ -107,9 +119,8 @@
   padding: 8px !important;
   border-width: 1px 1px 2px !important;
   border-style: solid !important;
-  border-color: rgb(235, 235, 235) rgb(235, 235, 235) rgb(0, 132, 137) !important;
+  border-color: rgb(235, 235, 235) rgb(235, 235, 235) !important;
   border-image: initial !important;
-  border-bottom: 2px solid rgb(0, 132, 137) !important;
 }
 
 .guest-drop-down-button {
@@ -125,6 +136,7 @@
   background: rgb(255, 255, 255) !important;
   border-radius: 3px !important;
   padding: 0px 16px !important;
+  border-top: 2px solid rgb(0, 132, 137) !important;
 }
 
 .guest-arrow {
@@ -177,6 +189,9 @@ body {
   border-color: rgb(235, 235, 235) !important;
   border-image: initial !important;
   border-radius: 2px !important;
+  box-sizing: border-box;
+  min-height: 40px;
+  min-width: 100%;
 }
 
 .date-cell {
@@ -189,8 +204,8 @@ body {
   width: calc(50% - 12px) !important;
   vertical-align: middle !important;
   margin: 0px !important;
-  padding: 8px !important;
   background: rgb(255, 255, 255) !important;
+  box-sizing: border-box;
 }
 
 .input1 {
@@ -204,6 +219,13 @@ body {
   border-style: initial !important;
   border-color: initial !important;
   border-image: initial !important;
+  display: block;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  font-weight: normal !important;
+  font-size: 17px !important;
+  line-height: 24px !important;
+  color: rgb(117, 117, 117) !important;
 }
 
 .inputP {
@@ -222,14 +244,89 @@ body {
 
 .font600 {
   font-weight: 600 !important;
+  width: 326px;
+  height: 42px;
 }
 
 .date-input {
   position: relative !important;
   display: block !important;
   box-sizing: border-box;
-  height: 42px;
+  /* height: 42px; */
+  box-sizing: border-box;
   /* width: 326px; */
+}
+
+.submit-button {
+  font-size: var(--font-button-font-size, 16px) !important;
+  line-height: var(--font-button-line-height, 24px) !important;
+  letter-spacing: var(--font-button-letter-spacing, normal) !important;
+  font-family: var(--font-button-font-family, Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif) !important;
+  text-transform: var(--font-button-text-transform, undefined) !important;
+  padding-top: var(--spacing-button-vertical, 10px) !important;
+  padding-bottom: var(--spacing-button-vertical, 10px) !important;
+  font-weight: var(--font-bold-font-weight, 800) !important;
+  padding-left: var(--spacing-button-horizontal, 22px) !important;
+  padding-right: var(--spacing-button-horizontal, 22px) !important;
+  box-shadow: var(--shadow-button-level0-box-shadow, none) !important;
+  color: #ffffff !important;
+  display: inline-block !important;
+  position: relative !important;
+  text-align: center !important;
+  transition-property: background, border-color, color !important;
+  transition-duration: 0.2s !important;
+  transition-timing-function: ease-out !important;
+  cursor: pointer !important;
+  width: 100% !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  letter-spacing: normal !important;
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  font-weight: 800 !important;
+  padding-left: 22px !important;
+  padding-right: 22px !important;
+  min-width: 71.1935px !important;
+  box-shadow: none !important;
+  color: rgb(255, 255, 255) !important;
+  margin: 0px !important;
+  text-decoration: none !important;
+  border-radius: 4px !important;
+  border-width: 2px !important;
+  border-style: solid !important;
+  background: rgb(255, 90, 95) !important;
+  border-color: transparent !important;
+}
+
+.button-text {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  overflow-wrap: break-word !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  line-height: 1.375em !important;
+  color: rgb(255, 255, 255) !important;
+  margin: 0px !important;
+}
+
+.booking-desc {
+  font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif !important;
+  overflow-wrap: break-word !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 1.33333em !important;
+  color: rgb(72, 72, 72) !important;
+  margin: 0px !important;
+}
+
+.diamond-icon {
+  /* background-image: url("https://a0.muscache.com/airbnb/static/page3/icon-uc-diamond-86ef3d6403e5b6747d1e3a97ed840b6d.gif"); */
+  min-height: 46px;
+  background-size: 48px !important;
+  margin-top: 0px !important;
+  transition: margin-top 0.4s ease 0s !important;
+  background-repeat: no-repeat !important;
+  background-position: right center !important;
 }
 
 /* -------------------------------------------------- 
@@ -293,9 +390,6 @@ body {
   font-size: 14px !important;
   text-align: center !important;
   height: 20px !important;
-  /* padding-top: 22px !important;
-  padding-bottom: 37px !important;
-  caption-side: initial !important; */
 }
 
 
@@ -327,8 +421,6 @@ body {
 .selected {
   background: rgb(0, 132, 137) !important;
 }
-
-/* CALENDAR */
 
 .calendar {
   position: relative;
@@ -505,4 +597,179 @@ p {
   font-weight: 400 !important;
   line-height: 1.375em !important;
   color: #484848 !important;
+}
+
+/* -------------------------------------------------- 
+                GuestDropDown Module
+-------------------------------------------------- */ 
+
+.drop-down {
+  position: absolute !important;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 6px, rgba(0, 0, 0, 0.07) 0px 0px 0px 1px !important;
+  width: 100% !important;
+  min-width: 280px !important;
+  text-align: left !important;
+  margin-bottom: 16px !important;
+  box-sizing: border-box !important;
+  z-index: 2 !important;
+  left: 0px !important;
+  background: rgb(255, 255, 255) !important;
+  border-radius: 3px !important;
+  padding: 0px 16px !important;
+}
+
+.no-padding {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  border-bottom: 0px !important;
+}
+
+.guest-row {
+  display: table !important;
+  width: 100% !important;
+  border-spacing: 0px !important;
+}
+
+.guest-label {
+  display: table-cell !important;
+  width: 100% !important;
+  vertical-align: middle !important;
+}
+
+.guest-label2 {
+  display: table !important;
+  margin-right: 12px !important;
+}
+
+.guest-label-font {
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  margin: 0px !important;
+  word-wrap: break-word !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: 1.375em !important;
+  color: #484848 !important;
+}
+
+.guest-controller {
+  display: table-cell !important;
+  vertical-align: middle !important;
+}
+
+.guest-controller-format {
+  display: table !important;
+  width: 120px !important;
+}
+
+.guest-minus {
+  display: table-cell !important;
+  vertical-align: middle !important;
+  text-align: left !important;
+}
+
+.guest-minus-format {
+  color: #008489 !important;
+  font-size: var(--size-flat-button-icon-size-small, 16px) !important;
+}
+
+.guest-num-format {
+  display: table-cell !important;
+  vertical-align: middle !important;
+  text-align: center !important;
+}
+
+.guest-button-format {
+  height: var(--size-flat-button-size-small, 32px) !important;
+  width: var(--size-flat-button-size-small, 32px) !important;
+  box-shadow: var(--shadow-button-level0-box-shadow, none) !important;
+  display: inline-block !important;
+  cursor: pointer !important;
+  text-align: center !important;
+  line-height: 1 !important;
+  position: relative !important;
+  touch-action: manipulation !important;
+  height: 32px !important;
+  width: 32px !important;
+  box-shadow: none !important;
+  border-radius: 50% !important;
+  border-style: solid !important;
+  border-color: rgb(0, 132, 137) !important;
+  background: transparent !important;
+  border-width: 1px !important;
+}
+
+.guest-button-format:hover {
+  border-color: rgb(0, 132, 137) !important;
+  background: transparent !important;
+}
+
+.guest-plus-format {
+  display: table-cell !important;
+  vertical-align: middle !important;
+  text-align: right !important;
+}
+
+.subtext-format {
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  margin: 0px !important;
+  word-wrap: break-word !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.2857142857142858em !important;
+  color: #484848 !important;
+}
+
+.close-button {
+  -webkit-box-align: center !important;
+  -ms-flex-align: center !important;
+  -webkit-box-lines: multiple !important;
+  text-align: justify !important;
+  line-height: 0 !important;
+  display: -webkit-box !important;
+  display: -moz-box !important;
+  display: -ms-flexbox !important;
+  display: -webkit-flex !important;
+  display: flex !important;
+  -webkit-flex-wrap: wrap !important;
+  -ms-flex-wrap: wrap !important;
+  flex-wrap: wrap !important;
+  -webkit-align-items: center !important;
+  align-items: center !important;
+}
+
+.close-button-format {
+  -webkit-box-flex: 1 !important;
+  -ms-flex-positive: 1 !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  text-align: left !important;
+  -webkit-flex-grow: 1 !important;
+  flex-grow: 1 !important;
+}
+
+.close-button-alignment {
+  display: inline-block !important;
+  vertical-align: middle !important;
+}
+
+.close-style {
+  color: var(--color-text-link, #008489) !important;
+  font-family: var(--font-font_family, Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif) !important;
+  color: #008489 !important;
+  font: inherit !important;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  text-decoration: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background: transparent !important;
+  border: 0px !important;
+  cursor: pointer !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  -webkit-user-select: auto !important;
+  -moz-user-select: auto !important;
+  -ms-user-select: auto !important;
+  user-select: auto !important;
+  text-align: left !important;
 }

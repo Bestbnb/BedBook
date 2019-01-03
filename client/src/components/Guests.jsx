@@ -39,44 +39,45 @@ class Guests extends React.Component {
 
   render() {
     return (
-      <div className='guests'>
+      <div className='guests' style={{marginBottom:'16px'}}>
 
       <label className='label-entry'>
         <span className='label'>Guests</span>
       </label>
+      <div style={{position:'relative'}}>
+        <div style={{width:'100%', position:'relative'}}>
+          <button className='guest-button' onClick={this.onClickHandler.bind(this)} aria-expanded={this.state.isOpen}>
+            <div className='LRbuffer8'>
+              <div className='guest3'>
+                <div className='guest-table'>
+                  <div style={{'display': 'table-cell', 'verticalAlign': 'middle'}}> 
+                    <span className='guest-button-label'>[temp] 1 guest</span>
+                  </div>
 
-      <div className=''>
-        <button className='guest-button' onClick={this.onClickHandler.bind(this)} aria-expanded={this.state.isOpen}>
-          <div className='LRbuffer8'>
-            <div className='guest3'>
-              <div className='guest-table'>
-                <span className='guest-button-label'>[temp] 1 guest</span>
+                  <div style={{'display': 'table-cell', 'verticalAlign': 'middle'}}> 
+                    {this.state.isOpen ? (
+                      <DownArrow />
+                      ) :
+                      <UpArrow />
+                    }
+                  </div>
+
+                </div>
+                <input type='hidden' id='number_of_guests' value='1'></input>
+                <input type='hidden' id='number_of_adults' value='0'></input>
+                <input type='hidden' id='number_of_children' value='0'></input>
+                <input type='hidden' id='number_of_infants' value='0'></input>
+                
               </div>
             </div>
-            <input type='hidden' id='number_of_guests' value='1'></input>
-            <input type='hidden' id='number_of_adults' value='0'></input>
-            <input type='hidden' id='number_of_children' value='0'></input>
-            <input type='hidden' id='number_of_infants' value='0'></input>
-            <div style={{'display': 'table-cell', 'verticalAlign': 'middle'}}> 
-              {this.state.isOpen ? (
-                <DownArrow />
-                ) :
-                <UpArrow />
-              }
+          </button>
 
-            </div>
-            
-            <div>
-              {this.state.isOpen ? (
-                <GuestDropDownMenu />
-              ) : null}
-
-            </div>
-
-          </div>
-        </button>
+          {this.state.isOpen ? (
+            <GuestDropDownMenu />
+          ) : null}
+          
+        </div>
       </div>
-      {/* <div>{this.state.isOpen && <GuestDropDownMenu />}</div> */}
     </div>
     )
   };
@@ -84,10 +85,3 @@ class Guests extends React.Component {
 
 
 export default Guests;
-
-{/* <button type='button' aria-expanded='false'>
-<div className='guest-button'>
-  <div className='guest-label'>[temp]2 guests, 1 infant</div>
-</div>
-<svg id='guest-drop-down-button' viewBox='0 0 18 18' role='presentation' aria-hidden='true' focusable='false'>^</svg>
-</button> */}

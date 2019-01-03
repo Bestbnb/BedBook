@@ -20,7 +20,9 @@ class App extends React.Component {
       infants: 0,
       checkIn: null,
       checkOut: null,
-      selectedArr: []
+      selectedArr: [],
+      bookingCheckIn: null,
+      bookingCheckOut: null,
     };
 
   }
