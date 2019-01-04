@@ -30,12 +30,36 @@ class Guests extends React.Component {
       isOpen: !currentState.isOpen
     }));
   }
+  
+  decreaseByOne(e) {
+    e.preventDefault();
+    this.props.updateAdults(-1);
+  }
 
-  // toggleShow(e) {
-  //   e.preventDefault();
-  //   const {show} = this.state;
-  //   this.setState( {show: !show} );
-  // }
+  decreaseByOneC(e) {
+    e.preventDefault();
+    this.props.updateChildren(-1);
+  }
+
+  decreaseByOneI(e) {
+    e.preventDefault();
+    this.props.updateInfants(-1);
+  }
+
+  increaseByOne(e) {
+    e.preventDefault();
+    this.props.updateAdults(1);
+  }
+
+  increaseByOneC(e) {
+    e.preventDefault();
+    this.props.updateChildren(1);
+  }
+
+  increaseByOneI(e) {
+    e.preventDefault();
+    this.props.updateInfants(1);
+  }
 
   render() {
     return (
@@ -50,8 +74,10 @@ class Guests extends React.Component {
             <div className='LRbuffer8'>
               <div className='guest3'>
                 <div className='guest-table'>
-                  <div style={{'display': 'table-cell', 'verticalAlign': 'middle'}}> 
-                    <span className='guest-button-label'>[temp] 1 guest</span>
+                  <div style={{'display': 'table-cell', 'verticalAlign': 'middle', width:'100%'}}> 
+                    <span className='guest-button-label'>
+                      {this.props.state.adults + this.props.state.children} guest{this.props.state.adults + this.props.state.children > 1 ? 's' : ''} {this.props.state.infants > 0 ? `, ${this.props.state.infants}` : ''} {this.props.state.infants > 0 ? 'infant' : ''}{this.props.state.infants > 1 ? 's' : ''}
+                    </span>
                   </div>
 
                   <div style={{'display': 'table-cell', 'verticalAlign': 'middle'}}> 
@@ -73,7 +99,7 @@ class Guests extends React.Component {
           </button>
 
           {this.state.isOpen ? (
-            <GuestDropDownMenu />
+            <GuestDropDownMenu state={this.props.state} updateAdults={this.props.updateAdults} decreaseByOne={this.decreaseByOne.bind(this)} increaseByOne={this.increaseByOne.bind(this)} decreaseByOneC={this.decreaseByOneC.bind(this)} increaseByOneC={this.increaseByOneC.bind(this)} decreaseByOneI={this.decreaseByOneI.bind(this)} increaseByOneI={this.increaseByOneI.bind(this)} onClickHandler={this.onClickHandler.bind(this)}/>
           ) : null}
           
         </div>

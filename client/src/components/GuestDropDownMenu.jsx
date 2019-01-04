@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GuestDropDownMenu = () => (
+const GuestDropDownMenu = (props) => (
   <div>
     <div className='guest-drop-down-button' >
       <div className="drop-down">
@@ -13,13 +13,13 @@ const GuestDropDownMenu = () => (
                     <div className="guest-label2">
                       <div id="StepIncrementerRow-title-GuestCountFilter-GuestPicker-p3-book_it-adults">
                         <div className="guest-label-font">Adults</div>
-                      </div>
+                      </div> 
                     </div>
                   </div>
                   <div className="guest-controller">
                     <div className="guest-controller-format">
                       <div className="guest-minus">
-                        <button type="button" className="guest-button-format">
+                        <button type="button" className="guest-button-format" onClick={props.decreaseByOne}>
                           <span className="guest-minus-format">
                             <svg viewBox="0 0 24 24" role="img" aria-label="subtract, 2 adults" focusable="false" style={{height: '1em', width: '1em', display: 'block', fill: 'currentcolor'}}>
                               <rect height="2" rx="1" width="12" x="6" y="11"></rect>
@@ -28,10 +28,10 @@ const GuestDropDownMenu = () => (
                         </button>
                       </div>
                       <div className="guest-num-format">
-                        <div className="guest-label-font">2</div>
+                        <div className="guest-label-font">{props.state.adults}</div>
                       </div>
                       <div className="guest-plus-format">
-                        <button type="button" className="guest-button-format" aria-busy="false">
+                        <button type="button" className="guest-button-format" aria-busy="false" onClick={props.increaseByOne}>
                           <span className="guest-minus-format">
                             <svg viewBox="0 0 24 24" role="img" aria-label="add, 2 adults" focusable="false" style={{height: '1em', width: '1em', display: 'block', fill: 'currentcolor'}}>
                               <rect height="2" rx="1" width="12" x="6" y="11"></rect>
@@ -63,7 +63,7 @@ const GuestDropDownMenu = () => (
                   <div className="guest-controller">
                     <div className="guest-controller-format">
                       <div className="guest-minus">
-                        <button type="button" className="guest-button-format" aria-busy="false">
+                        <button type="button" className="guest-button-format" aria-busy="false" onClick={props.decreaseByOneC}>
                           <span className="guest-minus-format">
                             <svg viewBox="0 0 24 24" role="img" aria-label="subtract, 1 child" focusable="false" style={{height: '1em', width: '1em', display: 'block', fill: 'currentcolor'}}>
                               <rect height="2" rx="1" width="12" x="6" y="11"></rect>
@@ -72,10 +72,10 @@ const GuestDropDownMenu = () => (
                         </button>
                       </div>
                       <div aria-hidden="true" className="guest-num-format">
-                        <div className="guest-label-font">1</div>
+                        <div className="guest-label-font">{props.state.children}</div>
                       </div>
                       <div className="guest-plus-format">
-                        <button type="button" className="guest-button-format" aria-busy="false">
+                        <button type="button" className="guest-button-format" aria-busy="false" onClick={props.increaseByOneC}>
                           <span className="guest-minus-format">
                             <svg viewBox="0 0 24 24" role="img" aria-label="add, 1 child" focusable="false" style={{height: '1em', width: '1em', display: 'block', fill: 'currentcolor'}}>
                               <rect height="2" rx="1" width="12" x="6" y="11"></rect>
@@ -107,7 +107,7 @@ const GuestDropDownMenu = () => (
                   <div className="guest-controller">
                     <div className="guest-controller-format">
                       <div className="guest-minus">
-                        <button type="button" disabled="" className="guest-button-format" aria-busy="false">
+                        <button type="button" disabled="" className="guest-button-format" aria-busy="false" onClick={props.decreaseByOneI}>
                           <span className="guest-minus-format">
                             <svg viewBox="0 0 24 24" role="img" aria-label="subtract, 0 infants" focusable="false" style={{height: '1em', width: '1em', display: 'block', fill: 'currentcolor'}}>
                               <rect height="2" rx="1" width="12" x="6" y="11"></rect>
@@ -116,10 +116,10 @@ const GuestDropDownMenu = () => (
                         </button>
                       </div>
                       <div aria-hidden="true" className="guest-num-format">
-                        <div className="guest-label-font">0</div>
+                        <div className="guest-label-font">{props.state.infants}</div>
                       </div>
                       <div className="guest-plus-format">
-                        <button type="button" className="guest-button-format" aria-busy="false">
+                        <button type="button" className="guest-button-format" aria-busy="false" onClick={props.increaseByOneI}>
                           <span className="guest-minus-format">
                             <svg viewBox="0 0 24 24" role="img" aria-label="add, 0 infants" focusable="false" style={{height: '1em', width: '1em', display: 'block', fill: 'currentcolor'}}>
                               <rect height="2" rx="1" width="12" x="6" y="11"></rect>
@@ -143,7 +143,7 @@ const GuestDropDownMenu = () => (
             </div>
             <div className="close-button-alignment">
               <div className="guest-label-font">
-                <button type="button" className="close-style" aria-busy="false">Close</button>
+                <button type="button" className="close-style" aria-busy="false" onClick={props.onClickHandler}>Close</button>
               </div>
             </div>
           </div>
