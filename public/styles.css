@@ -157,6 +157,22 @@ input {
   color: #484848 !important;
 }
 
+.modal-arrow {
+  position: absolute !important;
+  width: 20px !important;
+  height: 10px !important;
+  top: -10px !important;
+}
+
+.modal-arrow-fill {
+  fill: rgb(255, 255, 255) !important;
+}
+
+.modal-arrow-stroke {
+  stroke: rgb(235, 235, 235) !important;
+  fill: transparent !important;
+}
+
 .guest-arrow {
   height: 16px;
   width: 16px;

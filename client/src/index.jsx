@@ -32,7 +32,9 @@ class App extends React.Component {
   onClickHandlerCost(e) {
     e.preventDefault();
     this.setState(currentState => ({
-      isCostOpen: !currentState.isCostOpen
+      isCostOpen: !currentState.isCostOpen,
+      isCleaningOpen: false,
+      isServiceOpen: false
     }));
     console.log('COST', this.state.isCostOpen);
   }
@@ -40,7 +42,9 @@ class App extends React.Component {
   onClickHandlerCleaning(e) {
     e.preventDefault();
     this.setState(currentState => ({
-      isCleaningOpen: !currentState.isCleaningOpen
+      isCostOpen: false,
+      isCleaningOpen: !currentState.isCleaningOpen,
+      isServiceOpen: false
     }));
     console.log('CLEANING', this.state.isCleaningOpen);
   }
@@ -48,6 +52,8 @@ class App extends React.Component {
   onClickHandlerService(e) {
     e.preventDefault();
     this.setState(currentState => ({
+      isCostOpen: false,
+      isCleaningOpen: false,
       isServiceOpen: !currentState.isServiceOpen
     }));
     console.log('SERVICE', this.state.isServiceOpen);

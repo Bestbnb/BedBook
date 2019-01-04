@@ -62,6 +62,10 @@ const Booking = (props) => (
                             </div>  
                           </div>
                         </div>
+                        <svg role="presentation" focusable="false" className="modal-arrow" >
+                          <path className='modal-arrow-fill' d="M0,10 20,10 10,0z"></path>
+                          <path className='modal-arrow-stroke' d="M0,10 10,0 20,10"></path>
+                        </svg>
                       </div>
                     </div>
                   ) : ''}
@@ -93,6 +97,26 @@ const Booking = (props) => (
                         </svg>
                       </button>
                     </div>
+
+                    {props.state.isCleaningOpen ? (
+                    <div className='q-modal'>
+                      <div className='q-modal-styling'>
+                        <div style={{textAlign:'left'}}>
+                          <div style={{width:'auto', padding:'24px'}}>
+                            <div style={{marginRight:'20px'}}>
+                              <div className='modal-text' style={{width:'304px'}}>
+                                <div>One-time fee charged by host to cover the cost of cleaning their space.</div>
+                              </div>  
+                            </div>  
+                          </div>
+                        </div>
+                        <svg role="presentation" focusable="false" className="modal-arrow" >
+                          <path className='modal-arrow-fill' d="M0,10 20,10 10,0z"></path>
+                          <path className='modal-arrow-stroke' d="M0,10 10,0 20,10"></path>
+                        </svg>
+                      </div>
+                    </div>
+                  ) : ''}
                   </div>
                 </div>
 
@@ -121,6 +145,26 @@ const Booking = (props) => (
                         </svg>
                       </button>
                     </div>
+
+                    {props.state.isServiceOpen ? (
+                    <div className='q-modal'>
+                      <div className='q-modal-styling'>
+                        <div style={{textAlign:'left'}}>
+                          <div style={{width:'auto', padding:'24px'}}>
+                            <div style={{marginRight:'20px'}}>
+                              <div className='modal-text' style={{width:'304px'}}>
+                                <div>This helps us run our platform and offer services like 24/7 support on your trip.</div>
+                              </div>  
+                            </div>  
+                          </div>
+                        </div>
+                        <svg role="presentation" focusable="false" className="modal-arrow" >
+                          <path className='modal-arrow-fill' d="M0,10 20,10 10,0z"></path>
+                          <path className='modal-arrow-stroke' d="M0,10 10,0 20,10"></path>
+                        </svg>
+                      </div>
+                    </div>
+                  ) : ''}
                   </div>
                 </div>
 
