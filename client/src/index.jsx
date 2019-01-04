@@ -15,14 +15,72 @@ class App extends React.Component {
       serviceFee: null,
       total: null,
       bonusInfo: null,
-      adults: 0,
+      adults: 1,
       children: 0,
       infants: 0,
       checkIn: null,
       checkOut: null,
-      selectedArr: []
+      selectedArr: [],
+      bookingCheckIn: null,
+      bookingCheckOut: null,
+      isCostOpen: false,
+      isCleaningOpen: false,
+      isServiceOpen: false
     };
+  }
 
+  onClickHandlerCost(e) {
+    e.preventDefault();
+    this.setState(currentState => ({
+      isCostOpen: !currentState.isCostOpen,
+      isCleaningOpen: false,
+      isServiceOpen: false
+    }));
+    console.log('COST', this.state.isCostOpen);
+  }
+
+  onClickHandlerCleaning(e) {
+    e.preventDefault();
+    this.setState(currentState => ({
+      isCostOpen: false,
+      isCleaningOpen: !currentState.isCleaningOpen,
+      isServiceOpen: false
+    }));
+    console.log('CLEANING', this.state.isCleaningOpen);
+  }
+
+  onClickHandlerService(e) {
+    e.preventDefault();
+    this.setState(currentState => ({
+      isCostOpen: false,
+      isCleaningOpen: false,
+      isServiceOpen: !currentState.isServiceOpen
+    }));
+    console.log('SERVICE', this.state.isServiceOpen);
+  }
+
+  updateAdults(num) {
+    if (this.state.adults + num >= 1) {
+      this.setState({
+        adults: this.state.adults + num
+      })
+    }
+  }
+
+  updateChildren(num) {
+    if (this.state.children + num >= 0) {
+      this.setState({
+        children: this.state.children + num
+      })
+    }
+  }
+
+  updateInfants(num) {
+    if (this.state.infants + num >= 0) {
+      this.setState({
+        infants: this.state.infants + num
+      })
+    }
   }
 
   selectDateClick(day) {
@@ -67,15 +125,20 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Calendar state={this.state} selectDateClick={this.selectDateClick.bind(this)} calculateRangeSelected={this.calculateRangeSelected.bind(this)}/>
-        
-        <br></br>
-        <br></br>
+      <main style={{position:'absolute', display: 'block', width: '100%'}}>
+        <div className='room'>
+          <div style={{marginTop:'0px', marginBottom:'0px', marginLeft:'0px', marginRight:'0px'}}>
+            <div style={{marginTop:'-51px', paddingTop:'51px'}}></div>
+              <Calendar state={this.state} selectDateClick={this.selectDateClick.bind(this)} calculateRangeSelected={this.calculateRangeSelected.bind(this)}/>
+            
+              <br></br>
+              <br></br>
 
-        <Booking state={this.state}/>
+              <Booking state={this.state} updateAdults={this.updateAdults.bind(this)} updateChildren={this.updateChildren.bind(this)} updateInfants={this.updateInfants.bind(this)} onClickHandlerCost={this.onClickHandlerCost.bind(this)} onClickHandlerCleaning={this.onClickHandlerCleaning.bind(this)} onClickHandlerService={this.onClickHandlerService.bind(this)}/>
 
-      </div>
+          </div>
+        </div>
+      </main>
     )
   };
 };

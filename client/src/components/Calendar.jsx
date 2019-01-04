@@ -20,6 +20,8 @@ class Calendar extends React.Component {
 
     this.nextMonth = this.nextMonth.bind(this);
     this.prevMonth = this.prevMonth.bind(this);
+    this.renderCells = this.renderCells.bind(this);
+    this.renderCells2 = this.renderCells2.bind(this);
   }
 
   componentDidMount() {
@@ -62,13 +64,22 @@ class Calendar extends React.Component {
         let checkOut = booking.dateCheckOut;
         let difference = dateFns.differenceInCalendarDays(checkOut, checkIn);
         for (let i = 0; i <= difference; i++) {
-          bookingArr.push(dateFns.addDays(checkIn, i).toString())
+          bookingArr.push(this.parseDate(dateFns.addDays(checkIn, i).toString()));
         }
       });
       this.setState({
         bookingArr: bookingArr
       });
     }
+  }
+
+  parseDate(date) {
+    let dateArr = date.split(' ');
+    let output = [];
+    for (let i = 0; i < 4; i++) {
+      output.push(dateArr[i]);
+    }
+    return output.join(' ');
   }
 
   // controller //
@@ -173,7 +184,7 @@ class Calendar extends React.Component {
           if (dateFns.isBefore(day, this.state.today)) {
             availability = 'unavailable';
           } else if (bookingArr !== null) {
-            availability = (bookingArr.includes(day.toString()) ? 'unavailable' : 'available');
+            availability = (bookingArr.includes(this.parseDate(day.toString())) ? 'unavailable' : 'available');
           }
           if (availability === 'unavailable') {
             days.push(
@@ -188,6 +199,7 @@ class Calendar extends React.Component {
           } else {
             let isSelected = 'number';
             let isSelectedCell = '';
+
             if (this.props.state.selectedArr !== null) {
               let arr = this.props.state.selectedArr;
               isSelected = (arr.includes(day.toString()) ? 'selected-num' : 'number');
@@ -196,7 +208,7 @@ class Calendar extends React.Component {
 
             days.push(
               <div
-                className={`${availability} cell ${isSelectedCell}`}
+                className={`available cell ${isSelectedCell}`}
                 key={day}
                 onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
               >
@@ -247,7 +259,7 @@ class Calendar extends React.Component {
           if (dateFns.isBefore(day, this.state.today)) {
             availability = 'unavailable';
           } else if (bookingArr !== null) {
-            availability = (bookingArr.includes(day.toString()) ? 'unavailable' : 'available');
+            availability = (bookingArr.includes(this.parseDate(day.toString())) ? 'unavailable' : 'available');
           }
           if (availability === 'unavailable') {
             days.push(
@@ -329,6 +341,36 @@ class Calendar extends React.Component {
             {this.renderCells2()}
           </div>
         </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
+              <div> [filler] </div>
       </div>
     );
   }
