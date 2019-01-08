@@ -76,7 +76,7 @@ class Guests extends React.Component {
                 <div className='guest-table'>
                   <div style={{'display': 'table-cell', 'verticalAlign': 'middle', width:'100%'}}> 
                     <span className='guest-button-label'>
-                      {this.props.state.adults + this.props.state.children} guest{this.props.state.adults + this.props.state.children > 1 ? 's' : ''} {this.props.state.infants > 0 ? `, ${this.props.state.infants}` : ''} {this.props.state.infants > 0 ? 'infant' : ''}{this.props.state.infants > 1 ? 's' : ''}
+                      {this.props.state.adults + this.props.state.children} guest{this.props.state.adults + this.props.state.children > 1 ? 's' : ''}{this.props.state.infants > 0 ? `, ${this.props.state.infants}` : ''} {this.props.state.infants > 0 ? 'infant' : ''}{this.props.state.infants > 1 ? 's' : ''}
                     </span>
                   </div>
 

@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  calbook:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - 'database'
+    ports: 
+      - '1001:1337'
+
+  # seeding:
+  #   build: test/
+  #   depends_on:
+  #     - 'database'
+
+  database:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+        MYSQL_DATABASE: 'TEST_cal_book'
+        MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        MYSQL_ROOT_PASSWORD: ''
+        MYSQL_USER: root
+        MYSQL_PASSWORD: ''

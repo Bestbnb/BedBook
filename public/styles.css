@@ -564,7 +564,7 @@ h2 {
   caption-side: initial !important;
 }
 
-.container {
+.cal-container {
   display: -webkit-flex;
   display: flex;
   width: 632px;

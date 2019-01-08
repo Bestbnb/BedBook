@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
+
 const connection = new Sequelize('TEST_cal_book', 'root', '', {
-  host: 'localhost',
+  host: 'database',
   dialect: 'mysql'
   }
 );
@@ -34,7 +35,6 @@ const Reservations = connection.define('reservation', {
 
 
 // Reservations.belongsTo(BnbData);
-// BnbData.belongsTo(Reservations);
 Reservations.sync(
   // {force: true}
 );
