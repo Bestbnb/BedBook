@@ -5,6 +5,8 @@ const dateFns = require('date-fns');
 // ---------------------------------------------------------------
 // Testing DB Setup
 // ---------------------------------------------------------------
+
+
 const connection = new Sequelize('TEST_cal_book', 'root', '', {
   host: 'localhost',
   dialect: 'mysql'

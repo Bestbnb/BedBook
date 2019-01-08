@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const dbController = require('./db/dbController');
 const controller = require('./controller');
 
 // CREATE
